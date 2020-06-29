@@ -26,6 +26,15 @@ namespace ControllerApp
             ThreadStart runBackgroudEngine = new ThreadStart(InitEngine);
             Thread backgroundThread = new Thread(runBackgroudEngine);
             backgroundThread.Start();
+            while (true)
+            {
+                if (!backgroundThread.IsAlive)
+                {
+                    backgroundThread = new Thread(runBackgroudEngine);
+                    backgroundThread.Start();
+                    Thread.Sleep(1000);
+                }
+            }
         }
     }
 }
