@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using SharpDX.XInput;
 namespace ControllerApp.ControllerServices
@@ -10,7 +11,7 @@ namespace ControllerApp.ControllerServices
         public float leftTrigger, rightTrigger;
         public Gamepad gamepad;
         private int deadband = 2500;
-
+        public Dictionary<string, string> map = new Dictionary<string, string>();
 
         public ControllerState()
         {
@@ -28,6 +29,7 @@ namespace ControllerApp.ControllerServices
             rightThumb.X = (int)((Math.Abs((float)gamepad.RightThumbY) < deadband) ? 0 : (float)gamepad.RightThumbY / short.MaxValue * 100);
             leftTrigger = gamepad.LeftTrigger;
             rightTrigger = gamepad.RightTrigger;
+
         }
 
     }
